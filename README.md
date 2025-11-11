@@ -1,6 +1,4 @@
-<div align="center">
-  <img src="https://user-images.githubusercontent.com/47901349/182481495-06f11e94-8d8a-4580-b869-56b6defae182.png" width="100px">      
-  <h1>poimandres.nvim</h1>
+<div align="center"> <img src="./palette.png" width="100px">      <h1>poimandresish.nvim</h1>
 </div>
 
 <p align="center">
@@ -9,28 +7,9 @@
   </a>
 </p>
 
-Neovim theme based on the [poimandres vscode theme](https://github.com/drcmda/poimandres-theme), written in Lua with treesitter support. 
+neovim theme based on the [poimandres vscode theme](https://github.com/drcmda/poimandres-theme), written in Lua with treesitter support.
 
-All variants of the theme will be available for use.
-
-![Poimandres Golang](https://user-images.githubusercontent.com/47901349/185516934-6db42b76-bd96-4b3f-8c20-058827b6c70f.png)
-
-<details>
-<summary>More screenshots</summary>
-
-### Lua
-
-![Poimandres Lua](https://user-images.githubusercontent.com/47901349/182434460-3702a751-7cc1-43c6-aa9e-05843ad5489c.png)
-
-### TypeScript
-
-![Poimandres TypeScript](https://user-images.githubusercontent.com/47901349/182434594-0e8b3408-92ec-4056-8907-9a28a94fa08a.png)
-
-### Golang
-
-![Poimandres Golang](https://user-images.githubusercontent.com/47901349/182434263-91489ea7-8e6f-4c2a-b738-6d3f293cd357.png)
-
-</details>
+![Poimandresish Screenshot](./screenshot.png)
 
 ### Plugin Support
 
@@ -56,12 +35,12 @@ Install with [lazy.nvim](https://github.com/folke/lazy.nvim):
 ```lua
 -- Lua
 
-{ 
-  'olivercederborg/poimandres.nvim',
+{
+  'webhooked/poimandresish.nvim',
   lazy = false,
   priority = 1000,
   config = function()
-    require('poimandres').setup {
+    require('poimandresish').setup {
       -- leave this setup function empty for default config
       -- or refer to the configuration section
       -- for configuration options
@@ -70,10 +49,11 @@ Install with [lazy.nvim](https://github.com/folke/lazy.nvim):
 
   -- optionally set the colorscheme within lazy config
   init = function()
-    vim.cmd("colorscheme poimandres")
+    vim.cmd("colorscheme poimandresish")
   end
 }
 ```
+
 <details>
 <summary>Install with packer:</summary>
 
@@ -82,10 +62,10 @@ Install with [lazy.nvim](https://github.com/folke/lazy.nvim):
 ```lua
 -- Lua
 
-use { 
-  'olivercederborg/poimandres.nvim',
+use {
+  'webhooked/poimandresish.nvim',
   config = function()
-    require('poimandres').setup {
+    require('poimandresish').setup {
       -- leave this setup function empty for default config
       -- or refer to the configuration section
       -- for configuration options
@@ -93,6 +73,7 @@ use {
   end
 }
 ```
+
 </details>
 
 <details>
@@ -103,16 +84,17 @@ use {
 ```vim
 " Vim Script
 
-Plug 'olivercederborg/poimandres.nvim'
+Plug 'webhooked/poimandresish.nvim'
 
 lua << EOF
-  require('poimandres').setup {
-    " leave this setup function empty for default config
-    " or refer to the configuration section
-    " for configuration options
-  }
+require('poimandresish').setup {
+" leave this setup function empty for default config
+" or refer to the configuration section
+" for configuration options
+}
 EOF
-```
+
+````
 
 </details>
 
@@ -126,60 +108,70 @@ _**IMPORTANT!** The `setup` function has to be invoked before the colorscheme is
 ```lua
 -- Lua
 
-vim.cmd('colorscheme poimandres')
-```
+vim.cmd('colorscheme poimandresish')
+````
 
 ```vim
 " Vim Script
 
-colorscheme poimandres
+colorscheme poimandresish
 ```
 
 ## ⚙️ Configuration:
 
-**Setup function options**: 
+**Setup function options**:
 
 ```lua
-require('poimandres').setup {
+require('poimandresish').setup {
   bold_vert_split = false, -- use bold vertical separators
   dim_nc_background = false, -- dim 'non-current' window backgrounds
   disable_background = false, -- disable background
   disable_float_background = false, -- disable background for floats
   disable_italics = false, -- disable italics
+  transparent = false, -- enable transparent background (overrides disable_background)
+  background = { -- background color variants
+    light = "storm", -- used when vim.o.background = "light"
+    dark = "night",  -- used when vim.o.background = "dark"
+  },
+  -- Available background options: "noir" (#13151D), "night" (#1B1E28), "storm" (#252B37)
+  -- You can also use the simplified options:
+  -- bold = false,    -- shorthand for bold_vert_split
+  -- italics = true,  -- shorthand for disable_italics (inverted)
 }
 ```
 
-To enable Poimandres for `Lualine`, just set the theme in your Lualine configuration:
+**Example configurations**:
+
+```lua
+-- Transparent background with no italics
+require('poimandresish').setup {
+  transparent = true,
+  italics = false,
+}
+
+-- Dark theme with noir background
+require('poimandresish').setup {
+  background = {
+    light = "storm",
+    dark = "noir",
+  },
+  bold = false,
+  italics = false,
+}
+```
+
+To enable Poimandresish for `Lualine`, just set the theme in your Lualine configuration:
 
 ```lua
 require('lualine').setup {
   options = {
     -- ... your lualine config
-    theme = 'poimandres'
+    theme = 'poimandresish'
     -- ... your lualine config
   }
 }
 ```
 
-## Extra
-
-There's [extra](https://github.com/olivercederborg/poimandres.nvim/tree/main/extra) configuration files for the following tools:
-
-- [WezTerm](https://wezfurlong.org/wezterm/index.html) - [theme documentation](https://github.com/olivercederborg/poimandres.nvim/blob/main/extra/wezterm/README.md)
-
 ## Contributions
 
 Feel free to help improving the color scheme by opening issues and PRs with features, fixes or changes.
-
-## 🙌 Related
-
-- [poimandres-theme](https://github.com/drcmda/poimandres-theme): VSCode version
-- [poimandres-alacritty](https://github.com/z0al/poimandres-alacritty): Alacritty version
-- [poimandres-iterm](https://github.com/alii/poimandres-iterm): Iterm version
-- [poimandres.zed](https://github.com/mshaugh/poimandres.zed): Zed version
-
-### Hyper theme
-
-```bash
-hyper i hyper-pmndrs
-```
