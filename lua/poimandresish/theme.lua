@@ -28,7 +28,7 @@ function M.get(config)
     DarkenedPanel = { bg = groups.panel },
     DarkenedStatusline = { bg = groups.panel },
     DiffAdd = { bg = blend(groups.git_add, groups.background, 0.5) },
-    DiffChange = { bg = p.blueGray1 },
+    DiffChange = { bg = blend(groups.git_change, groups.background, 0.5) },
     DiffDelete = { bg = blend(groups.git_delete, groups.background, 0.5) },
     DiffText = { bg = blend(groups.git_text, groups.background, 0.5) },
     diffAdded = { link = 'DiffAdd' },
